@@ -29,9 +29,21 @@
         // GET METHOD
         public function showProfile() {
             $userId = $_SESSION['user_id'];
-            
+
+            $user = $this->userModel->getUserById($userId);
+
             $data = [
                 'title' => "Profile",
+                'user' => $user,
+                'username' => $user->username,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'birthday' => $user->birthday,
+                'organization' => $user->organization,
+                'location' => $user->location,
+                'profile_image' => $user->profile_image,
             ];
 
             render('admin/users/profile', $data, 'layouts/admin_layout');

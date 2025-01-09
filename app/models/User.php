@@ -22,6 +22,15 @@
             $this->conn = Database::getInstance()->getConnection();
         }
 
+        // Retrieve User Information by User's Id
+        public function getUserById($userId) {
+            $query = "SELECT * FROM $this->table WHERE id = :id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $userId);
+            $stmt->execute();
+            return $stmt->fetchObject();
+        }
+
         // Insert a user into users table
         public function store() {
             $query = "INSERT INTO $this->table (username, email, password) VALUES (:username, :email, :password)";
