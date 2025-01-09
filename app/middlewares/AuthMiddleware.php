@@ -5,7 +5,7 @@
                 session_start();
             }
 
-            return isset($_SESSION['id']) && !empty($_SESSION['id']);
+            return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
         }
 
         public static function requiredLogin() {

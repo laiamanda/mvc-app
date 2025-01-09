@@ -8,6 +8,7 @@
             '/user/login' => 'UserController@showLoginForm',
             '/dashboard' => 'AdminController@dashboard',
             '/admin' => 'AdminController@admin',
+            '/admin/user/profile' => 'UserController@showProfile',
         ],
         'POST' => [
             '/register' => 'UserController@register',
