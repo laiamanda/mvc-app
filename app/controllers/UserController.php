@@ -49,6 +49,34 @@
             render('admin/users/profile', $data, 'layouts/admin_layout');
         }
 
+        // POST METHOD
+        public function updateProfile() {
+            $userId = $_SESSION['user_id'];
+            
+            $first_name = sanitize($_POST['first_name'] ?? '');
+            $last_name = sanitize($_POST['last_name'] ?? '');
+            $email = sanitize($_POST['email'] ?? '');
+            $phone = sanitize($_POST['phone'] ?? '');
+            $birthday = sanitize($_POST['birthday'] ?? '');
+            $organization = sanitize($_POST['organization'] ?? '');
+            $location = sanitize($_POST['location'] ?? '');
+
+            $userData = [
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'email' => $email,
+                'phone' => $phone,
+                'birthday' => $birthday,
+                'organization' => $organization,
+                'location' => $location,
+            ];
+
+            // var_dump($userData);
+
+            $updateStatus = $this->userModel -> update($userId, $userData);
+            var_dump($updateStatus);
+        }
+
         // GET METHOD
         public function showLoginForm() {
             render('user/login');

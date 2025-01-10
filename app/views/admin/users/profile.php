@@ -107,11 +107,11 @@
 
                 <!-- Settings Tab -->
                 <div class="tab-pane active" id="settings">
-                    <form action="#" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                    <form action="<?php echo base_url('/admin/user/update'); ?>" class="form-horizontal" method="POST" enctype="multipart/form-data" >
                         <div class="form-group row">
                             <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputUsername" name="username" value="<?php echo $username; ?>" placeholder="Username">
+                                <input disabled type="text" class="form-control" id="inputUsername" name="username" value="<?php echo $username; ?>" placeholder="Username">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -159,7 +159,7 @@
                         <div class="form-group row">
                             <label for="inputProfileImage" class="col-sm-2 col-form-label">Profile Image</label>
                             <div class="col-sm-10">
-                                <input type="file" class="form-control" id="inputProfileImage" name="profile_image">
+                                <input type="file" class="form-control" id="inputProfileImage">
                             </div>
                         </div>
                         <div class="form-group row">

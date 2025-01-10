@@ -31,6 +31,29 @@
             return $stmt->fetchObject();
         }
 
+        // Update User's Profile
+        public function update($userId, $userData) {
+            $fields = [];
+
+            foreach($userData as $key => $value) {
+                $fields[] = "{$key} = :{$key}";
+            }
+
+            $query = "UPDATE $this->table SET " . implode(', ', $fields) . " WHERE id = :id";
+            $stmt = $this->conn->prepare($query);
+
+            foreach($userData as $key => $value) {
+                if($value === '') {
+                    $stmt->bindValue(":{$key}", null ,PDO::PARAM_NULL);
+                } else {
+                    $stmt->bindValue(":{$key}", $value);
+                }
+            }
+            $stmt->bindValue(':id', $userId, PDO::PARAM_INT);
+
+            return $stmt->execute();
+;        }
+
         // Insert a user into users table
         public function store() {
             $query = "INSERT INTO $this->table (username, email, password) VALUES (:username, :email, :password)";
