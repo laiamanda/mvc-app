@@ -15,6 +15,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href=" <?php echo base_url('dist/css/adminlte.min.css'); ?>">
+  <!-- Add CSS -->
+  <?php 
+    if(isset($styles) && is_array($styles)) {
+      foreach ($styles as $style) {
+        echo  '<link rel="stylesheet" href="' . base_url($style) . '">';
+      }
+    }
+  ?>
+  <!-- jQuery -->
+  <script src=" <?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -218,7 +228,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <form method="post" action="<?php echo base_url('logout') ?>" >
+            <form method="post" action="<?php echo base_url('logout'); ?>" >
               <button class="nav-link">Logout</button>
             </form>
           </li>
@@ -287,9 +297,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src=" <?php echo base_url('plugins/jquery/jquery.min.js'); ?>"></script>
 <!-- Bootstrap 4 -->
 <script src=" <?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 <!-- AdminLTE App -->
@@ -297,9 +304,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="<?php echo base_url('dist/js/chartks.min.js'); ?>"></script>
 
 <?php 
+ 
   if(isset($scripts) && is_array($scripts)) {
     foreach ($scripts as $script) {
-      echo  '<script src="' . base_url($script) .'"></scripts';
+      echo  '<script src="' . base_url($script) .'"></script>';
     }
   }
 ?>
