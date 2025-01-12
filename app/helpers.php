@@ -83,4 +83,9 @@
             return $_SESSION['username']; 
         }
     }
+
+    function setSessionMessage($type, $message) {
+        $message =htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+        $_SESSION[$type] = $message;
+    }
 ?>

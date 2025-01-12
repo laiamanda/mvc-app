@@ -6,7 +6,7 @@
         <div class="card-body box-profile">
             <div class="text-center">
                 <img class="profile-user-img img-fluid img-circle"
-                        src="<?php $profile_image ?? 'uploads/dummy-profile.png'; ?>"
+                        src="<?php echo base_url($profile_image) ?? 'uploads/dummy-profile.png'; ?>"
                         alt="User profile picture">
             </div>
 
@@ -48,6 +48,20 @@
 <!-- /.col -->
 
 <div class="col-md-9">
+    <?php if(isset($_SESSION['error'])): ?>
+        <div class="alert alert-danger">
+            <?php echo $_SESSION['error']; ?>
+            <?php unset($_SESSION['error']); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if(isset($_SESSION['message'])): ?>
+        <div class="alert alert-success">
+            <?php echo $_SESSION['message']; ?>
+            <?php unset($_SESSION['message']); ?>
+        </div>
+    <?php endif; ?>
+
     <div class="card">
         <div class="card-header p-2">
             <ul class="nav nav-pills">
@@ -159,7 +173,7 @@
                         <div class="form-group row">
                             <label for="inputProfileImage" class="col-sm-2 col-form-label">Profile Image</label>
                             <div class="col-sm-10">
-                                <input type="file" class="form-control" id="inputProfileImage">
+                                <input type="file" class="form-control" name="profile_image" id="inputProfileImage">
                             </div>
                         </div>
                         <div class="form-group row">
