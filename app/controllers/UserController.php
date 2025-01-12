@@ -73,7 +73,7 @@
 
             if(isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
                 $imagePath = $this->userModel ->handleImageUpload($_FILES['profile_image']);
-                
+
                 if($imagePath) {
                     $userData['profile_image'] = $imagePath;
                 } else {
@@ -87,8 +87,38 @@
             
             if($updateStatus) {
                 setSessionMessage('message', 'Profile updated successfully updated'); 
+                $_SESSION['active_tab'] = '#settings';
             } else {
                 setSessionMessage('error', 'Failed to Update');
+            }
+
+            redirect('/admin/user/profile');
+        }
+
+        // POST METHOD 
+        public function updateUserProfilePassword() {
+            $userId = $_SESSION['user_id'];
+
+            $newPassword = sanitize($_POST['new_password'] ?? '');
+            $confirmPassword = sanitize($_POST['confirm_password'] ?? '');
+
+            if(empty($newPassword) || empty($confirmPassword)) {
+                setSessionMessage('error', 'Please fill all the required fields');
+                redirect('/admin/user/profile');
+            }
+
+            if($newPassword !== $confirmPassword) {
+                setSessionMessage('error', 'Passwords do not match');
+                redirect('/admin/user/profile');
+            }
+
+            $updateStatus = $this->userModel->updatePassword($userId, $newPassword);
+
+            if($updateStatus) {
+                setSessionMessage('message', 'Password updated successfully');
+                $_SESSION['active_tab'] = '#password';
+            } else {
+                setSessionMessage('error', 'Failed to update password');
             }
 
             redirect('/admin/user/profile');
