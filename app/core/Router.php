@@ -76,8 +76,26 @@
                 $params = $handler['params'];
                 
                 self::callAction($controller, $action, $params);
+            } else {
+                http_response_code(404);
+                self::error404();
             }
         }
+
+        // Render error page with layout
+        protected static function error404(){
+            $data = [
+                'title' => '404 - Not Found',
+                'message' => 'The page you are looking for could not be found'
+            ];
+
+            render('errors/404', $data);
+        }
+
+        // Render 404 Page
+        // protected static function render404() {
+        //     require_once views_path('errors/404.php');
+        // }
 
         public static function match($method, $requestUri) {
             foreach(self::$routes[$method] as $route => $handler) {
