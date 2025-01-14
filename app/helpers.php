@@ -24,6 +24,10 @@
         return base_path('app/views/'. ltrim($path, '/'));
     }
 
+    function route($name, $parameters=[]) {
+        return Router::route($name, $parameters);
+    }
+
     // Redirect the user
     function redirect($path='', $queryParams = []) {
         $url = base_url('/' . $path);

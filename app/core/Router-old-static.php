@@ -5,8 +5,6 @@
             'POST' => [],
         ];
 
-        protected static $nameRoutes = [];
-
         // Trim the route
         protected static function formatRoute($route){
             return '/' . trim($route , '/');
@@ -15,37 +13,11 @@
         // Handle the Get Route
         public static function get($path, $handler) {
             self::$routes['GET'][self::formatRoute($path)] = $handler;
-            return new static;
         }
 
         // Handle the Post Route
         public static function post($path, $handler) {
             self::$routes['POST'][self::formatRoute($path)] = $handler;
-            return new static;
-        }
-
-        // Retrieve the name from the route
-        public static function name($routeName) {
-            $lastRoute =  array_key_last(self::$routes['GET'] + self::$routes['POST']);
-
-            if($lastRoute !== null) {
-                self::$nameRoutes[$routeName] = $lastRoute;
-            }
-            return new static; 
-        }
-
-        public static function route($name, $params = []) {
-            if(!isset(self::$nameRoutes[$name])) {
-                throw new Exception("Route $name does not exists");
-            }
-
-            $route = self::$nameRoutes[$name];
-
-            foreach($params as $key => $value) {
-                $route = str_replace('{' . $key . '}', $value, $route);
-            }
-
-            return $route;
         }
 
         public static function dispatch() {
