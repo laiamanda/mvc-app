@@ -15,10 +15,11 @@
 
         $controllerInstance = new $controller;
         $controllerInstance->$action();
-    } else {
-        http_response_code(404); // Not Found
-        echo "404 - Page Not Found";
-    }
+    } 
+    // else {
+    //     http_response_code(404); // Not Found
+    //     echo "404 - Page Not Found";
+    // }
 
     // if(array_key_exists($request, $routes)) {
     //     $route = explode("@", $routes[$request]);

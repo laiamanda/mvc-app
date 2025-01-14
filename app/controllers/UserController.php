@@ -151,5 +151,9 @@
             session_destroy();
             redirect('user/login');
         }
+
+        public function test() {
+            var_dump("Test");
+        }
     }
 ?>

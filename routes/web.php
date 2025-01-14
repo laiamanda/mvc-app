@@ -1,4 +1,10 @@
 <?php 
+    $router = new Route();
+
+    $router -> get('user/test/{id}', 'UserController@test');
+
+    $router->dispatch();
+
     $routes = [
         'GET' => [
             '/' => 'HomeController@index',
