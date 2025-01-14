@@ -9,6 +9,7 @@
     $router -> get('/dashboard', 'AdminController@dashboard');
     $router -> get('/admin', 'AdminController@admin');
     $router -> get('/admin/user/profile', 'UserController@showProfile');
+    $router -> get('/user/test/{id}', 'UserController@test');
 
     $router -> post('/register', 'UserController@register');
     $router -> post('/login', 'UserController@login');

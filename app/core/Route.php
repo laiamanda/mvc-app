@@ -40,11 +40,11 @@
             foreach($this->routes[$method] as $route => $handler) {
                 $pattern = preg_replace('#\{[a-zA-Z0-9_]+}#', '([a-zA-Z0-9_]+)', $route);
                 if(preg_match('#^'. $pattern . '$#', $requestUri, $matches)) {
-                 array_shift($matches);
-                 return [
-                     'handler' => $handler,
-                     'params' => $matches,
-                 ];
+                    array_shift($matches);
+                    return [
+                        'handler' => $handler,
+                        'params' => $matches,
+                    ];
                 }
             }
             return false;

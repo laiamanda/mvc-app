@@ -152,8 +152,9 @@
             redirect('user/login');
         }
 
-        public function test() {
-            var_dump("Test");
+        public function test($id) {
+            // var_dump("Test");
+            var_dump($this->userModel->getUserById($id));
         }
     }
 ?>
