@@ -9,7 +9,6 @@
     Router:: get('/admin', 'AdminController@admin');
     Router:: get('/admin/user/profile', 'UserController@showProfile');
     Router:: get('/user/test/{id}', 'UserController@test');
-
     Router:: get('/admin/test/{id}', 'AdminController@test')->name('admin.test');
 
     Router:: post('/register', 'UserController@register');
@@ -17,4 +16,6 @@
     Router:: post('/logout', 'UserController@logout');
     Router:: post('/admin/user/update', 'UserController@updateProfile')->name('update.profile');
     Router:: post('/admin/profile/user/password/update', 'UserController@updateUserProfilePassword');
+
+    // Router:: get('/admin/test/{id}', 'AdminController@test')->name('admin.test');
 ?>

@@ -6,6 +6,8 @@
         ];
 
         protected static $nameRoutes = [];
+        // Keep track of the last added route
+        protected static $lastAddedRoute = null;
 
         // Trim the route
         protected static function formatRoute($route){
@@ -14,23 +16,36 @@
 
         // Handle the Get Route
         public static function get($path, $handler) {
-            self::$routes['GET'][self::formatRoute($path)] = $handler;
+            // self::$routes['GET'][self::formatRoute($path)] = $handler; // Old Version before Last Added Route
+            $formattedPath = self::formatRoute($path);
+            self::$routes['GET'][$formattedPath] = $handler;
+            self::$lastAddedRoute = $formattedPath;
             return new static;
         }
 
         // Handle the Post Route
         public static function post($path, $handler) {
-            self::$routes['POST'][self::formatRoute($path)] = $handler;
+            // self::$routes['POST'][self::formatRoute($path)] = $handler;
+            $formattedPath = self::formatRoute($path);
+            self::$routes['POST'][$formattedPath] = $handler;
+            self::$lastAddedRoute = $formattedPath;
             return new static;
         }
 
         // Retrieve the name from the route
         public static function name($routeName) {
-            $lastRoute =  array_key_last(self::$routes['GET'] + self::$routes['POST']);
 
-            if($lastRoute !== null) {
-                self::$nameRoutes[$routeName] = $lastRoute;
-            }
+            if(self::$lastAddedRoute !== null) {
+                self::$nameRoutes[$routeName] = self::$lastAddedRoute;
+                self::$lastAddedRoute = null;
+            } else {
+                throw new Exception("No Route Available");
+            }  
+            // $lastRoute =  array_key_last(self::$routes['GET'] + self::$routes['POST']);
+
+            // if($lastRoute !== null) {
+            //     self::$nameRoutes[$routeName] = $lastRoute;
+            // }
             return new static; 
         }
 
