@@ -7,6 +7,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('user/login') ?>">Login</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('user/register') ?>">Register</a>
+             </li>
         <?php else: ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('dashboard') ?>">Admin</a>
@@ -19,8 +22,6 @@
             <a class="nav-link" href="<?php echo base_url('contact') ?>">Contact</a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('user/register') ?>">Register</a>
-        </li>
+
     </ul>
 </nav>
