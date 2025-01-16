@@ -22,7 +22,8 @@
             if($user->store()) {
                 redirect('/');
             } else {
-                echo "There was an error";
+                $_SESSION['error'] = 'Unable to register. Please Try Again.';
+                redirect('user/login');
             }
         }
 
@@ -141,7 +142,8 @@
 
                 redirect('/dashboard');
             } else {
-                echo "There was an error";
+                $_SESSION['error'] = 'Unable to login';
+                redirect('user/login');
             }
         }
 

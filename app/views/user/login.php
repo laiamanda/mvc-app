@@ -1,4 +1,7 @@
 <h2 class="text-center mb-4">Login</h2>
+<?php if(isset($_SESSION['error'])): ?>
+   <p class="text-center mb-4 text-danger"><?php echo "[Error]: " . $_SESSION['error']; ?> </p> 
+<?php endif; ?>
 <div class="row justify-content-center">
     <div class="col-md-6">
         <form action="<?php echo route('login'); ?>" method="post">
